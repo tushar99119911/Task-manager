@@ -141,7 +141,39 @@ personal-task-manager-main/
 
 ## Deployment
 
-Deploy the backend to Render, Railway, or a similar host. Deploy the frontend to Vercel or Netlify, and set `VITE_API_URL` to the deployed backend URL.
+This project is deployment-ready with the following environment variables:
+
+- Backend:
+  - `PORT` — port for the Express server (default `5000`)
+  - `CORS_ORIGIN` — allowed frontend origin(s), comma-separated
+  - `DATA_FILE` — optional path to the JSON persistence file
+  - `HOST` — optional listen host, default `0.0.0.0` for cloud deployment
+- Frontend:
+  - `VITE_API_URL` — deployed backend API base URL, for example `https://my-backend.example.com/api`
+
+Deployment flow:
+
+1. Build and deploy the backend from `server/`.
+2. Build and deploy the frontend from `client/`.
+3. Set the frontend `VITE_API_URL` to your backend API URL.
+4. Set the backend `CORS_ORIGIN` to your frontend URL.
+
+Recommended hosts:
+
+- Backend: Render, Railway, Heroku, Fly.io, or similar
+- Frontend: Vercel, Netlify, or static hosting
+
+### Render deployment
+
+To deploy both services on Render, use the repo root `render.yaml` configuration and set these environment variables:
+
+- Backend service:
+  - `CORS_ORIGIN=https://<frontend-service>.onrender.com`
+  - `HOST=0.0.0.0`
+- Frontend service:
+  - `VITE_API_URL=https://<backend-service>.onrender.com/api`
+
+If you want to deploy only one service on Render, create a Web Service for the backend and a Static Site for the frontend.
 
 ## Notes
 

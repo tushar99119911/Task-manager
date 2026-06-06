@@ -26,9 +26,11 @@ app.use(handleServiceError);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
+const HOST = process.env.HOST || '0.0.0.0';
+
 if (process.env.NODE_ENV !== 'test') {
-  app.listen(PORT, '127.0.0.1', () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  app.listen(PORT, HOST, () => {
+    console.log(`Server running on http://${HOST === '0.0.0.0' ? 'localhost' : HOST}:${PORT}`);
   });
 }
 
