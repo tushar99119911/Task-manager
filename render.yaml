@@ -4,7 +4,7 @@ services:
     env: node
     branch: main
     root: server
-    buildCommand: npm ci && npm run build
+    buildCommand: npm install && npm run build
     startCommand: npm start
     envVars:
       - key: CORS_ORIGIN
@@ -17,7 +17,7 @@ services:
     env: static
     branch: main
     root: client
-    buildCommand: npm ci && npm run build
+    buildCommand: npm install && npm run build
     publishPath: dist
     envVars:
       - key: VITE_API_URL
