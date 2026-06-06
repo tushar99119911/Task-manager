@@ -4,25 +4,21 @@ services:
     env: node
     branch: main
     root: server
-    buildCommand: npm install --include=dev && npm run build
+    buildCommand: npm ci && npm run build
     startCommand: npm start
     envVars:
       - key: CORS_ORIGIN
         value: https://personal-task-manager-frontend.onrender.com
       - key: HOST
         value: 0.0.0.0
-      - key: NPM_CONFIG_PRODUCTION
-        value: false
 
   - type: static_site
     name: personal-task-manager-frontend
     env: static
     branch: main
     root: client
-    buildCommand: npm install --include=dev && npm run build
+    buildCommand: npm ci && npm run build
     publishPath: dist
     envVars:
       - key: VITE_API_URL
         value: https://personal-task-manager-backend.onrender.com/api
-      - key: NPM_CONFIG_PRODUCTION
-        value: false
